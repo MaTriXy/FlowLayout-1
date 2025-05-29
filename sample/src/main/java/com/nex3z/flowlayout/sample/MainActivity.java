@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import com.nex3z.flowlayout.FlowLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -28,6 +31,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RecyclerViewActivity.class);
                 startActivity(intent);
+            }
+        });
+        Button btnTestAdapter = findViewById(R.id.btn_test_adapter);
+        btnTestAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //测试 adapter
+                FlowLayout flow2 = findViewById(R.id.flow2);
+                List<String> datas = new ArrayList<>();
+                datas.add("Java");
+                datas.add("C++");
+                datas.add("C#");
+                datas.add("Rust");
+                datas.add("Kotlin");
+                flow2.setAdapter(new SimpleFlowAdapter(datas));
             }
         });
     }
