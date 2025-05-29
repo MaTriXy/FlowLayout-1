@@ -60,6 +60,8 @@ public class FlowLayout extends ViewGroup {
     private List<Integer> mWidthForRow = new ArrayList<>();
     private List<Integer> mChildNumForRow = new ArrayList<>();
 
+    private FlowAdapter mAdapter;
+
     public FlowLayout(Context context) {
         this(context, null);
     }
@@ -501,4 +503,25 @@ public class FlowLayout extends ViewGroup {
         return TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
+
+
+    public void setAdapter(FlowAdapter adapter) {
+        this.mAdapter = adapter;
+        mAdapter.setFlowLayout(this);
+        refreshViews();
+    }
+
+    private void refreshViews() {
+        removeAllViews();
+        if (mAdapter == null) return;
+
+        final int count = mAdapter.getItemCount();
+        for (int i = 0; i < count; i++) {
+            int viewType = mAdapter.getItemViewType(i);
+            FlowAdapter.ViewHolder viewHolder = mAdapter.createViewHolder(this, viewType);
+            mAdapter.bindView(viewHolder, i);
+            addView(viewHolder.itemView);
+        }
+    }
+
 }

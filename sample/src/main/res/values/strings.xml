@@ -8,4 +8,5 @@
     <string name="fri">FRI</string>
     <string name="sat">SAT</string>
     <string name="with_recyclerview">FlowLayout with RecyclerView</string>
+    <string name="test_adapter">test_adapter</string>
 </resources>
